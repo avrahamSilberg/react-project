@@ -19,7 +19,21 @@ function FullName({
 }: FullNameProps) {
   const [isValidInput, setIsValidInput] = useState(false);
 
+  useEffect(() => {
+    setIsValidInput(firstName !== "" && lastName !== "");
+  }, [firstName, lastName]);
 
+  const setField = (
+    text: string,
+    setFunc: Dispatch<SetStateAction<string>>
+  ): void => {
+    if (
+      validator.isAlphanumeric(text.trim()) ||
+      validator.isEmpty(text.trim())
+    ) {
+      setFunc(text);
+    }
+  };
 
   return (
     <Box>
@@ -34,15 +48,14 @@ function FullName({
         <UserInput
           inputName="First Name"
           onChange={(text) => {
-            console.log('first name');
-            
+            setField(text, setFirstName);
           }}
           text={firstName}
         />
         <UserInput
           inputName="Last Name"
           onChange={(text) => {
-            console.log('last name');
+            setField(text, setLastName);
           }}
           text={lastName}
         />
