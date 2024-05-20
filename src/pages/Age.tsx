@@ -12,14 +12,23 @@ interface AgeProps {
 function Age({ setAge, age }: AgeProps) {
   const [isValidInput, setIsValidInput] = useState(!!age);
 
+  useEffect(() => {
+    setIsValidInput(!!age);
+  }, [age]);
 
+  const setField = (text: string): void => {
+    if (validator.isInt(text)) {
+      setAge(parseInt(text));
+    } else {
+      setAge(NaN);
+    }
+  };
 
   return (
     <>
       <UserInput
         inputName="Age"
-        onChange={(n) => console.log('doit')
-        }
+        onChange={(n) => setField(n)}
         text={!!age ? age.toString() : ""}
       />
       <Stack spacing={2} direction="row" sx={{ ml: 1, pt: 15 }}>
