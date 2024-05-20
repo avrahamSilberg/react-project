@@ -4,6 +4,7 @@ import FullName from "./pages/FullName";
 import Age from "./pages/Age";
 import Review from "./pages/Review";
 import { useUserInfo } from "./hooks/use-user-metadata";
+import Finish from "./pages/Finish";
 
 function Router() {
   const userInfo = useUserInfo();
@@ -37,6 +38,7 @@ function Router() {
             />
           }
         />
+        <Route path="finish" element={<Finish />} />
       </Routes>
     </BrowserRouter>
   );

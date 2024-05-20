@@ -18,8 +18,10 @@ function Review({ firstName, lastNmae, age }: ReviewProps) {
         <NavigationButton text="Previos" routPath="age" />
         <NavigationButton
           text="Finish"
-          routPath="/"
-          onClick={() => console.log("save to local storage")}
+          routPath="/finish"
+          onClick={() => {
+            localStorage.setItem('userInfo', JSON.stringify({'firstName': firstName, "lastNmae": lastNmae, 'age': age}));
+          }}
         />
       </Stack>
     </>
